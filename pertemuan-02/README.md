@@ -1,22 +1,17 @@
-# pertemuan-02
+# Laporan Praktikum Pertemuan 2 - PHP MVC Kustom
 
-**Nama: Seldelio <br>
-NIM: 2522500026 <br>
-Kelompok: SI3A <br>
-URL Repositori GitHub: https://github.com/2522500026-eng/2522500026-DPWL-SELDELIO <br>
-URL README P2: pertemuan-02/README.md
+*NIM:* 2522500026 
+*Nama:* Seldelio 
+*Kelas:* SI3A  
 
-1. snapshot aplikasi MVC P2 pada folder pertemuan-02/, meliputi application/, assets/, system/, dan index.php;
-2. pertemuan-02/README.md yang telah diisi sesuai ketentuan Modul P2;
-3. folder pertemuan-02/dokumentasi/ yang berisi tangkapan layar yang digunakan pada README.md;
-4. hasil Tahap Modifikasi ATM, yaitu minimal satu route tambahan yang berbeda dari contoh info/(:any), satu method Controller yang menerima minimal satu parameter, dan satu View sederhana berdasarkan objek atau konteks aplikasi DPW;
-5. dokumentasi pemetaan route → Controller → method → parameter → View serta hasil pengujiannya;
-6. hasil pengujian dan debugging sesuai kondisi pekerjaan yang sebenarnya; dan
-7. histori Git/GitHub yang menunjukkan kesinambungan perkembangan pekerjaan dari P1 ke P2.
+---
 
-**JAWABAN**
+## 1. Tujuan Praktikum
+Memahami fondasi arsitektur PHP MVC kustom tanpa framework, serta mengimplementasikan front controller, pemetaan rute dinamis, dan penyajian data profil project
 
-1. BASE: C:\laragon\www\dpwl-2522500026
+## 2. Struktur Direktori
+```text
+BASE: C:\laragon\www\dpw\2522500026\SI3A\2522500026-pwd-si3a-seldelio
 ├─ application
 │  ├─ config
 │  │  ├─ config.php
@@ -38,7 +33,38 @@ URL README P2: pertemuan-02/README.md
    └─ core
       ├─ Controller.php
       └─ Router.php
+## 3. Front Controller
+index.php berfungsi sebagai Front Controller yang menerima seluruh lalu lintas URL, memuat berkas konfigurasi, memanggil Router, serta mengeksekusi Controller yang dituju
 
-2. pertemuan-02/README.md yang telah diisi sesuai ketentuan Modul P2;
+## 4. Routing dan Pemetaan URL
 
-3. 
+Berikut adalah tabel pemetaan alur permintaan (*request*) dari URL ke Controller, Method, Parameter, hingga View yang dirender:
+
+| URL/Route | Controller | Method | Parameter | View |
+|---|---|---|---|---|
+| `/` | Home | index | - | home/index.php |
+| `home/index` | Home | index | - | home/index.php |
+| `home/info/mvc` | Home | info | mvc | home/info.php |
+| `info/routing` | Home | info | routing | home/info.php |
+| `project/1` | Pemancing | index | 1 | project/index.php |
+
+* **Penjelasan Route Modifikasi (`project/1`):**  
+  Ketika URL `project/1` diakses, *Router* mengarahkan permintaan ke *Controller* `Project` dan mengeksekusi *method* `index()`. Nilai `1` ditangkap sebagai parameter ID pemancing untuk menampilkan data spesifik pemancing pada *View* `pemancing/index.php`
+
+## 5. Base URL dan Helperbase_url(): Membentuk alur URL statis menuju direktori aset.Contoh: <link rel="stylesheet" href="<?= base_url('assets/css/app.css'); ?>">site_url(): Membentuk URL rute internal aplikasi untuk navigasi.Contoh: <a href="<?= site_url('info/routing'); ?>">Info Routing</a>
+
+## 6. Alur Request-ResponseAlur Aktual P2:Browser $\rightarrow$ index.php $\rightarrow$ Router $\rightarrow$ Controller $\rightarrow$ View $\rightarrow$ Response.Posisi Model (MVC Utuh):Browser $\rightarrow$ index.php $\rightarrow$ Router $\rightarrow$ Controller $\rightarrow$ Model $\rightarrow$ Basis Data $\rightarrow$ Model $\rightarrow$ Controller $\rightarrow$ View $\rightarrow$ Response.Catatan: Komponen Model belum digunakan pada P2 karena pemrosesan basis data baru dipelajari di P3.
+
+## 7. Hasil Pengujian dan DebuggingSkenario Valid: Mengakses rute /, info/routing, dan pemancing/1 berhasil menampilkan data yang sesuai.Skenario Tidak Valid: Akses ke rute sembarang (misal home/xyz) menghasilkan respon error 404 Not Found.Proses Debugging:Gejala: Perubahan data profil pemancing tidak terbarui di browser.Penyebab: Berkas di editor VS Code belum disimpan (unsaved).Perbaikan: Menekan Ctrl + S untuk menyimpan berkas.Hasil Uji Ulang: Tampilan profil pemancing berhasil diperbarui.
+
+### 8. Gambar 1. Hasil Pengujian Halaman Utama
+![Gambar 1](Dokumentasi/gambar1.png)
+
+### Gambar 2. Hasil Pengujian Custom Route project
+![Gambar 2](Dokumentasi/gambar2.png)
+
+### Gambar 3. Hasil Pengujian Route Info
+![Gambar 3](Dokumentasi/gambar3.png)
+
+## 9. Kesimpulan P2
+Praktikum P2 berhasil mengimplementasikan front controller, pemetaan rute dinamis, serta pemisahan logika (Pemancing.php) dan tampilan (view). Pengelolaan data melalui Model dan basis data akan dilanjutkan pada P3.
