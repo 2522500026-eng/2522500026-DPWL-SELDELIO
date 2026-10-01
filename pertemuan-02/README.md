@@ -33,6 +33,7 @@ BASE: C:\laragon\www\dpw\2522500026\SI3A\2522500026-pwd-si3a-seldelio
    └─ core
       ├─ Controller.php
       └─ Router.php
+```
 ## 3. Front Controller
 index.php berfungsi sebagai Front Controller yang menerima seluruh lalu lintas URL, memuat berkas konfigurasi, memanggil Router, serta mengeksekusi Controller yang dituju
 
