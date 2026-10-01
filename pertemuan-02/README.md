@@ -57,10 +57,12 @@ Berikut adalah tabel pemetaan alur permintaan (*request*) dari URL ke Controller
 
 ## 7. Hasil Pengujian dan DebuggingSkenario Valid: Mengakses rute /, info/routing, dan pemancing/1 berhasil menampilkan data yang sesuai.Skenario Tidak Valid: Akses ke rute sembarang (misal home/xyz) menghasilkan respon error 404 Not Found.Proses Debugging:Gejala: Perubahan data profil pemancing tidak terbarui di browser.Penyebab: Berkas di editor VS Code belum disimpan (unsaved).Perbaikan: Menekan Ctrl + S untuk menyimpan berkas.Hasil Uji Ulang: Tampilan profil pemancing berhasil diperbarui.
 
-### 8. Gambar 1. Hasil Pengujian Halaman Utama
-![Gambar 1](confiq.png)
+## 8. Dokumentasi Pengujian
 
-### Gambar 2. Hasil Pengujian Custom Route project
+### Gambar 1. Hasil Pengujian Halaman Utama
+![Gambar 1](config.png)
+
+### Gambar 2. Hasil Pengujian Custom Route Project
 ![Gambar 2](routing.png)
 
 ### Gambar 3. Hasil Pengujian Route Info
