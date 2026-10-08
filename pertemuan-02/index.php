@@ -21,3 +21,19 @@ $uri = substr($requestPath, strlen($scriptName));
 }
 $router = new Router($route);
 $router->dispatch($uri);
+
+...
+require_once APPPATH . 'models/Admin_model.php';
+$model = new Admin_model();
+echo '<pre>';
+// Uji 1: username yang ada
+echo "UJI 1 - Username admin\n";
+$dataAdmin = $model->findByUsername('admin');
+var_dump($dataAdmin);
+// Uji 2: username yang tidak ada
+echo "\nUJI 2 - Username tidak ada\n";
+$dataTidakAda = $model->findByUsername('admin_tidak_ada');
+var_dump($dataTidakAda);
+echo '</pre>';
+exit;
+...
